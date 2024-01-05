@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Life</title>
+</head>
+<body>
+    <canvas id="life"></canvas>
+    
+    <div id="sliders-container" style="color: rgba(255, 255, 255, 0.953); display: none;background-color: rgb(0, 0, 0); padding: 10px;scroll-behavior: auto;">
+        <label for="yellowSlider">Yellow Strength:</label>
+        <input type="range" id="yellowSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="greenSlider">Green Strength:</label>
+        <input type="range" id="greenSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="redSlider">Red Strength:</label>
+        <input type="range" id="redSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="blueSlider">Blue Strength:</label>
+        <input type="range" id="blueSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+        
+        <label for="cyanSlider">Cyan Strength:</label>
+        <input type="range" id="cyanSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="purpleSlider">Purple Strength:</label>
+        <input type="range" id="purpleSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="magentaSlider">Magenta Strength:</label>
+        <input type="range" id="magentaSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="whiteSlider">White Strength:</label>
+        <input type="range" id="whiteSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="limeSlider">Lime Strength:</label>
+        <input type="range" id="limeSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="goldSlider">Gold Strength:</label>
+        <input type="range" id="goldSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="brownSlider">Brown Strength:</label>
+        <input type="range" id="brownSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="greySlider">Grey Strength:</label>
+        <input type="range" id="greySlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 20px; display: block;">
+
+    </div>
+
+    <div id="sliders-container2" style="color: white; display: none;background-color: black; padding: 10px;scroll-behavior: auto;right : 10px;">
+
+        <label for="XVelSlider">X Velocity:</label>
+        <input type="range" id="XVelSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 10px; display: block;">
+
+        <label for="YVelSlider">Y Velocity:</label>
+        <input type="range" id="YVelSlider" min="-5" max="500" value="50" step="0.5" style="width: 150px; margin-bottom: 20px; display: block;">
+
+        <label for="thresholdSlider">Threshold:</label>
+        <input type="range" id="thresholdSlider" min="0" max="500" value="19" step="0.5" style="width: 150px; margin-bottom: 20px; display: block;">
+
+        <label for="distanceSlider">Distance:</label>
+        <input type="range" id="distanceSlider" min="0" max="100" value="1" step="0.5" style="width: 150px; margin-bottom: 20px; display: block;">
+        
+        <label for="gravitySlider">Gravity:</label>
+        <input type="range" id="gravitySlider" min="-10.0" max="10.0" value="0.1" step="0.1" style="width: 150px; margin-bottom: 10px; display: block;">
+
+
+    </div>
+
+    
+    <button id="toggleSlidersButton2">&darr;</button>
+    <button id="toggleSlidersButton">&darr;</button>
+
+    
+    <style>
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #life {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #sliders-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #sliders-container2 {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="range"] {
+            width: 150px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        #toggleSlidersButton {
+            position: absolute;
+            top: 10px;
+            left: 147px;
+        }
+
+        #toggleSlidersButton2 {
+            color:black;
+            position: absolute;
+            top: -10px;
+            left: 170px;
+        }
+
+    </style>
+
+    <script src="generation.js"></script>
+    <script>
+
+        const slidersContainer = document.getElementById('sliders-container');
+        const slidersContainer2 = document.getElementById('sliders-container2');
+        const toggleSlidersButton = document.getElementById('toggleSlidersButton');
+        const toggleSlidersButton2 = document.getElementById('toggleSlidersButton2');
+        
+        toggleSlidersButton2.style.top = -10 + 'px';
+        toggleSlidersButton.style.top = -10 + 'px';
+        // Listen for button click to toggle sliders visibility
+        toggleSlidersButton.addEventListener('click', function() {
+            if (slidersContainer.style.display === 'none') {
+                slidersContainer.style.display = 'block';
+                toggleSlidersButton.innerHTML = '&uarr;';
+            } else {
+                slidersContainer.style.display = 'none';
+                toggleSlidersButton.innerHTML = '&darr;';
+            }
+        });
+
+        toggleSlidersButton2.addEventListener('click', function() {
+            if (slidersContainer2.style.display === 'none') {
+                slidersContainer2.style.display = 'block';
+                toggleSlidersButton2.innerHTML = '&uarr;';
+            } else {
+                slidersContainer2.style.display = 'none';
+                toggleSlidersButton2.innerHTML = '&darr;';
+            }
+        });
+
+    </script>
+</body>
+</html>
